@@ -17,6 +17,5 @@ var util = {
 		  return "";
 		}
 }
-
 export default util;
 
