@@ -4,8 +4,7 @@ var publicPath = path.join(config.rootPath, 'dist');
 module.exports = {
 	//js注册
 	script: {
-		pal: path.join(publicPath,'pal'),
-		util: path.join(publicPath,'util'),
+		pal: path.join(publicPath,'pal')
 	},
 	//默认页面
 	default: 'pal.html',
@@ -13,7 +12,7 @@ module.exports = {
 	file: [
 		{
 			page: 'pal.html',
-			chunks: ['pal', 'util']
+			chunks: ['pal']
 		},
 	]
 }

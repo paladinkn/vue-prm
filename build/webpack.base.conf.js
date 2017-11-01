@@ -18,6 +18,10 @@ var webpackConfig = {
 		        test:/\.css$/,
 		        loader: 'style-loader!css-loader'
 		    },
+		    {
+		        test: /\.(scss|sass)$/,
+		        loader: 'style-loader!css-loader!sass-loader'
+		    },
 		     {
 		        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
 		        use: [{
