@@ -7,7 +7,8 @@ module.exports = {
 		//是否自动打开浏览器
 		autoOpenBrowser: true
 	},
-	pro: {
-		env: "pro"
+	build: {
+		env: "pro",
+		buildPath: path.join(__dirname,'..', '_dist')
 	}
 }

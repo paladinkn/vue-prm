@@ -5,9 +5,10 @@ var config = require('../config');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
+var palMap = require('../pal-map');
 var webpackDevConfig = merge(webpackBaseConfig, {
 	output: {
-		path: path.join(config.root, 'static', 'js'),
+		path: path.join(config.build.buildPath, 'js'),
 		publicPath: './js',
 		filename: '[name].js'
 	},
@@ -20,25 +21,11 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 	        warnings: false
 	      }
 	    }),
-		new HtmlWebpackPlugin({
-			filename: path.join(config.root, 'static/index.html'),
-			template: path.join(config.root, 'index.html'),
-			inject: true,
-			hash: true,
-			chunks: ['index']
-		}),
-		new HtmlWebpackPlugin({
-			filename: path.join(config.root, 'static/main.html'),
-			template: path.join(config.root, 'main.html'),
-			inject: true,
-			hash: true,
-			chunks: ['main']
-		}),
 	]
 })
-homeMap.file.map(function(it,i) {
+palMap.file.map(function(it,i) {
 	var o = new HtmlWebpackPlugin({
-		filename: it.page,
+		filename: path.join(config.build.buildPath, it.page),
 		template: path.join(config.rootPath, it.page),
 		inject: true,
 		hash: true,
