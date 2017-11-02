@@ -44,11 +44,11 @@ var webpackConfig = {
             filename:'[name].[contenthash].css'
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'runtime'
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
             names: ['util','lib'], // 指定公共 bundle 的名称。
             minChunks:2
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime'
         })
     ],
 	resolve: {
