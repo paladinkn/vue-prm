@@ -9,10 +9,10 @@ new Vue({
 	template: '<pal/>',
 	components: { pal },
 })
-/*util.setCookie('pal', 'palas',1);
+util.setCookie('pal', 'palas',1);
 setTimeout(function() {
 	console.log(util.getCookie('pal'));
-},2000);*/
+},2000);
 
 
 

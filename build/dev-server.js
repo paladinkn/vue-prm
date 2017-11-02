@@ -26,10 +26,15 @@ app.use(devMiddleware);
 //设置静态地址
 /*app.use(express.static('static'));*/
 //配置路由
-/*app.get('/', function(req, resp) {
-	resp.sendFile(path.resolve('main.html'));
+app.post('/pal', function(req, resp) {
+	var obj = {
+		name: 'paladin',
+		age: '25'
+	}
+	obj = JSON.stringify(obj);
+	resp.end(obj);
 })
-app.get('/*.html', function(req, resp) {
+/*app.get('/*.html', function(req, resp) {
 	var html_url = path.join(path.resolve(req.url.split('/')[1]));
 	resp.sendFile(html_url);
 })*/

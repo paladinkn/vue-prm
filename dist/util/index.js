@@ -1,21 +1,11 @@
+import {setCookie, getCookie} from './p-cookie';
+import {pajax} from './p-ajax';
 var util = {
-	setCookie: function (cname,cvalue,exdays){
-		  if(!exdays) exdays = 10000;
-		  var d = new Date();
-		  d.setTime(d.getTime()+(exdays*24*60*60*1000));
-		  var expires = "expires="+d.toGMTString();
-		  document.cookie = cname + "=" + cvalue + "; " + expires;
-		},
-	getCookie: function(cname){
-		  var name = cname + "=";
-		  var ca = document.cookie.split(';');
-		  for(var i=0; i<ca.length; i++) 
-		  {
-		    var c = ca[i].trim();
-		    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
-		  }
-		  return "";
-		}
+	setCookie: setCookie,
+	getCookie: getCookie,
+	pajax: pajax
 }
+
+
 export default util;
 
