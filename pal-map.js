@@ -4,8 +4,10 @@ var publicPath = path.join(config.rootPath, 'dist');
 module.exports = {
 	//js注册
 	script: {
+	    lib:['vue','jquery'],
 		pal: path.join(publicPath,'pal'),
 		supplier: path.join(publicPath,'supplier'),
+		util: path.join(publicPath,'util'),
 	},
 	//默认页面
 	default: 'pal.html',
@@ -13,11 +15,12 @@ module.exports = {
 	file: [
 		{
 			page: 'pal.html',
-			chunks: ['pal']
+			chunks: ['common','util','lib','pal']
+
 		},
 		{
 			page: 'supplier.html',
-			chunks: ['supplier']
+			chunks: ['common','util','lib','supplier']
 		},
 	]
 }

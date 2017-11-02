@@ -13,14 +13,14 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 		filename: '[name].js'
 	},
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
+		/*new webpack.optimize.UglifyJsPlugin({
 	      output: {
 	        comments: false,
 	      },
 	      compress: {
 	        warnings: false
 	      }
-	    }),
+	    }),*/
 	]
 })
 palMap.file.map(function(it,i) {

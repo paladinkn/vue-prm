@@ -2,6 +2,7 @@ var path = require('path');
 var config = require('../config');
 var palMap = require('../pal-map');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
 var webpackConfig = {
 	entry: palMap.script,
 	module: {
@@ -41,6 +42,10 @@ var webpackConfig = {
     plugins: [
         new ExtractTextPlugin({
             filename:'[name].[contenthash].css'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['common','util','lib'], // 指定公共 bundle 的名称。
+            minChunks:2
         })
     ],
 	resolve: {
