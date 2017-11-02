@@ -1,6 +1,7 @@
 var path = require('path');
 var config = require('../config');
 var palMap = require('../pal-map');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpackConfig = {
 	entry: palMap.script,
 	module: {
@@ -20,7 +21,11 @@ var webpackConfig = {
 		    },
 		    {
 		        test: /\.(scss|sass)$/,
-		        loader: 'style-loader!css-loader!sass-loader'
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
+                    use: ['css-loader', 'sass-loader']
+                })
 		    },
 		     {
 		        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
@@ -33,6 +38,11 @@ var webpackConfig = {
 		    }
 		]
 	},
+    plugins: [
+        new ExtractTextPlugin({
+            filename:'[name].[contenthash].css'
+        })
+    ],
 	resolve: {
 		alias: {
 			'vue$': 'vue/dist/vue.js'
