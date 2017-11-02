@@ -7,7 +7,7 @@ import util from '../util';
 new Vue({
 	el: '#pal',
 	template: '<pal/>',
-	components: { pal },
+	components: { pal:pal },
 })
 util.setCookie('pal', 'palas',1);
 setTimeout(function() {
