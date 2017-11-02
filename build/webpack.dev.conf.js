@@ -10,7 +10,7 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 	output: {
 		path: path.join(config.rootPath, '_dist'),
 		publicPath: '/',
-		filename: '[name].js'
+		filename: '[name].[chunkhash].js'
 	},
 	devtool: '#cheap-module-eval-source-map',
 	plugins: [
@@ -39,7 +39,8 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 			chunks: ['card']
 		}),*/
 		//友好的错误提示
-		new FriendlyErrorsPlugin()
+		new FriendlyErrorsPlugin(),
+        new webpack.NamedModulesPlugin()//解决trunk id自增影响缓存
 	]
 })
 palMap.file.map(function(it,i) {
@@ -56,7 +57,7 @@ palMap.file.map(function(it,i) {
 			filename: 'index.html',
 			template: path.join(config.rootPath, it.page),
 			inject: true,
-			hash: true,
+			hash: false,
 			chunks: it.chunks
 		})
 		webpackDevConfig.plugins.push(indexPage);

@@ -10,7 +10,7 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 	output: {
 		path: path.join(config.build.buildPath, 'js'),
 		publicPath: './js',
-		filename: '[name].js'
+		filename: '[name].[chunkhash].js'
 	},
 	plugins: [
 		/*new webpack.optimize.UglifyJsPlugin({
@@ -21,6 +21,7 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 	        warnings: false
 	      }
 	    }),*/
+        new webpack.HashedModuleIdsPlugin()
 	]
 })
 palMap.file.map(function(it,i) {
@@ -28,7 +29,7 @@ palMap.file.map(function(it,i) {
 		filename: path.join(config.build.buildPath, it.page),
 		template: path.join(config.rootPath, it.page),
 		inject: true,
-		hash: true,
+		hash: false,
 		chunks: it.chunks
 	})
 	webpackDevConfig.plugins.push(o);

@@ -15,12 +15,12 @@ module.exports = {
 	file: [
 		{
 			page: 'pal.html',
-			chunks: ['common','util','lib','pal']
+			chunks: ['runtime','util','lib','pal']
 
 		},
 		{
 			page: 'supplier.html',
-			chunks: ['common','util','lib','supplier']
+			chunks: ['runtime','util','lib','supplier']
 		},
 	]
 }
