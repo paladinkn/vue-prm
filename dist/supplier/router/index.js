@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import {supplierList} from '../views';
+import {supplierMain} from '../views';
 Vue.use(VueRouter);
 const routes = [
-	{path: '', redirect: supplierList},
-	{path: '/list/:id', component: supplierList}
+	{path: '/', redirect: {name: 'main'}},
+	{path: '/main', name:'main',component: supplierMain}
 	]	
 const router = new VueRouter({
 	routes

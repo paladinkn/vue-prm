@@ -9,6 +9,4 @@ var pajax = function(info) {
 		});
 }
 
-
-
 export {pajax}

@@ -1,3 +1,3 @@
-import supplierList from './supplier-list.vue';
+import supplierMain from './supplier-main.vue';
 
-export {supplierList}
+export {supplierMain}

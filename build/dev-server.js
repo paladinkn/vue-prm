@@ -27,11 +27,7 @@ app.use(devMiddleware);
 /*app.use(express.static('static'));*/
 //配置路由
 app.post('/pal', function(req, resp) {
-	var obj = {
-		name: 'paladin',
-		age: '25'
-	}
-	obj = JSON.stringify(obj);
+	var obj = 'mock data';
 	resp.end(obj);
 })
 /*app.get('/*.html', function(req, resp) {
