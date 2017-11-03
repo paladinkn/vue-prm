@@ -14,12 +14,12 @@ module.exports = {
 	//html对应js
 	file: [
 		{
-			page: 'pal.html',
+            chunk:'pal',
 			chunks: ['runtime','util','lib','pal']
 
 		},
 		{
-			page: 'supplier.html',
+            chunk:'supplier',
 			chunks: ['runtime','util','lib','supplier']
 		},
 	]
