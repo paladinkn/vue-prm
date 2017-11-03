@@ -16,16 +16,6 @@ import supplierMy from './supplier-my.vue';
 import util from '../../util';
 export default {
 	data: function() {
-		util.pajax({
-			url: '/pals',
-			data: {a:1},
-			success: function(data) {
-				console.log(data)
-			},
-			error: function() {
-
-			}
-		})
 		return {};
 	},
 	components: {

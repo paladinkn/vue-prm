@@ -1,46 +1,37 @@
 <template>
 	<div>
-		<el-table border :data="supperListData">
-			<el-table-column  
-			  prop="id"
-		      label="ID"
-		      width="180">
-			</el-table-column>
-			<el-table-column  
-			  prop="type"
-		      label="供应商类型"
-		      width="180">
-			</el-table-column>
-			<el-table-column  
-			  prop="name"
-		      label="供应商名称"
-		      >
-			</el-table-column>
-		</el-table>
+		<p-table :info="tData" v-on:jump="jumpPage"></p-table>
 	</div>
 </template>
 <script>
+import {pTable} from '../components';
+import util from '../../util';
 	export default {
 		data: function() {
-			var obj = {
-				supperListData: [{
-					id: 1,
-					type: 'pals',
-					name: 'paladin'
-				},{
-					id: 1,
-					type: 'pals',
-					name: 'paladin'
-				},{
-					id: 1,
-					type: 'pals',
-					name: 'paladin'
-				}]
-			}
+			var obj = {};
+			obj.tData = {}
 			return obj;
 		},
-		mounted: function() {
-			
+		created: function() {
+			var that = this;
+			util.pajax({
+				url: '/supplier/list',
+				data: {page:1},
+				success: function(data) {
+					that.tData = data;
+				},
+				error: function() {
+
+				}
+			})
+		},
+		methods:{
+			jumpPage: function(num) {
+				console.log(num);
+			}
+		},
+		components: {
+			pTable
 		}
 	}
 </script>
