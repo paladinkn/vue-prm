@@ -7,14 +7,13 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 var palMap = require('../pal-map');
 var webpackDevConfig = merge(webpackBaseConfig, {
-	output: {
-		path: path.join(config.rootPath, '_dist'),
-		publicPath: '/',
-		filename: '[name].js'
-	},
+    output: {
+        path: path.join(config.rootPath, '_dist'),
+        publicPath: './',
+        filename: '[name].[hash].js'
+    },
 	devtool: '#cheap-module-eval-source-map',
 	plugins: [
-		
 		//测试环境错误提示
 		/*new webpack.DefinePlugin({
 			'process.env': config.dev.env
@@ -39,13 +38,14 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 			chunks: ['card']
 		}),*/
 		//友好的错误提示
-		new FriendlyErrorsPlugin()
+		new FriendlyErrorsPlugin(),
+        new webpack.NamedModulesPlugin()//解决trunk id自增影响缓存
 	]
 })
 palMap.file.map(function(it,i) {
 	var o = new HtmlWebpackPlugin({
-		filename: it.page,
-		template: path.join(config.rootPath, it.page),
+		filename: typeof it.page=='undefined'?it.chunk+'.html':it.page,
+		template: typeof it.page=='undefined'?path.join(config.rootPath, 'dist',it.chunk,it.chunk+'.html'):path.join(config.rootPath, 'dist',it.chunk,it.page),
 		inject: true,
 		hash: true,
 		chunks: it.chunks
@@ -56,7 +56,7 @@ palMap.file.map(function(it,i) {
 			filename: 'index.html',
 			template: path.join(config.rootPath, it.page),
 			inject: true,
-			hash: true,
+			hash: false,
 			chunks: it.chunks
 		})
 		webpackDevConfig.plugins.push(indexPage);
