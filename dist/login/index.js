@@ -9,3 +9,5 @@ new Vue({
 	template: '<login/>',
 	components: { login }
 })
+
+

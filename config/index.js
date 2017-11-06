@@ -5,7 +5,7 @@ module.exports = {
 		env: 'dev',
 		port: 8090,
 		//是否自动打开浏览器
-		autoOpenBrowser: true
+		autoOpenBrowser: false
 	},
 	build: {
 		env: "pro",

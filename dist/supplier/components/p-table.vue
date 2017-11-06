@@ -22,12 +22,17 @@
 		props: ['info', 'jump'],
 		data: function() {
 			var obj = {};
-			obj.tData = this.info;
+			
 			return obj;
 		},
 		methods: {
 			handleCurrentChange: function(val) {
 				this.$emit('jump',val);
+			}
+		},
+		computed: {
+			tData: function() {
+				return this.info;
 			}
 		}
 	}

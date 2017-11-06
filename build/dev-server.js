@@ -14,8 +14,9 @@ var app = express();
 var port = process.env.PORT || config.dev.port;
 var url = 'http:127.0.0.1:'+port;
 var autoOpenBrowser = !!config.dev.autoOpenBrowser;
-
+var mock = require('./mock.js');
 var compiler = webpack(webpackConfig);
+var bodyParser = require('body-parser');
 //配置webpack中间件
 var devMiddleware = require('webpack-dev-middleware')(compiler, function() {
 	publicPath: webpackConfig.output.publicPath
@@ -23,13 +24,10 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, function() {
 })
 //加载webpack中间件
 app.use(devMiddleware);
-//设置静态地址
-/*app.use(express.static('static'));*/
-//配置路由
-app.post('/pal', function(req, resp) {
-	var obj = 'mock data';
-	resp.end(obj);
-})
+app.use(bodyParser.json());
+
+//mock 数据路由
+mock.use(app);
 /*app.get('/*.html', function(req, resp) {
 	var html_url = path.join(path.resolve(req.url.split('/')[1]));
 	resp.sendFile(html_url);
