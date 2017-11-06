@@ -1,6 +1,7 @@
 var path = require('path');
 var config = require('./config');
 var publicPath = path.join(config.rootPath, 'dist');
+const commonChunks=['runtime','util','lib'];
 module.exports = {
 	//js注册
 	script: {
@@ -22,12 +23,12 @@ module.exports = {
 		},
 		{
             chunk:'pal',
-			chunks: ['runtime','util','lib','pal']
+			chunks: commonChunks.concat(['pal'])
 
 		},
 		{
             chunk:'supplier',
-			chunks: ['runtime','util','lib','supplier']
+			chunks: commonChunks.concat(['supplier'])
 		},
 	]
 }
