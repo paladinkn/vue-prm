@@ -8,7 +8,7 @@ var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 var palMap = require('../pal-map');
 var webpackDevConfig = merge(webpackBaseConfig, {
     output: {
-        path: path.join(config.rootPath, '_dist'),
+        path: path.join(config.rootPath, 'src'),
         publicPath: './',
         filename: '[name].[hash].js'
     },
@@ -45,7 +45,7 @@ var webpackDevConfig = merge(webpackBaseConfig, {
 palMap.file.map(function(it,i) {
 	var o = new HtmlWebpackPlugin({
 		filename: typeof it.page=='undefined'?it.chunk+'.html':it.page,
-		template: typeof it.page=='undefined'?path.join(config.rootPath, 'dist',it.chunk,it.chunk+'.html'):path.join(config.rootPath, 'dist',it.chunk,it.page),
+		template: typeof it.page=='undefined'?path.join(config.rootPath, 'src',it.chunk,it.chunk+'.html'):path.join(config.rootPath, 'src',it.chunk,it.page),
 		inject: true,
 		hash: true,
 		chunks: it.chunks
@@ -54,7 +54,7 @@ palMap.file.map(function(it,i) {
 	if(palMap.default && it.page == palMap.default) {
 		var indexPage = new HtmlWebpackPlugin({
 			filename: 'index.html',
-			template: typeof it.page=='undefined'?path.join(config.rootPath, 'dist',it.chunk,it.chunk+'.html'):path.join(config.rootPath, 'dist',it.chunk,it.page),
+			template: typeof it.page=='undefined'?path.join(config.rootPath, 'src',it.chunk,it.chunk+'.html'):path.join(config.rootPath, 'src',it.chunk,it.page),
 			inject: true,
 			hash: false,
 			chunks: it.chunks

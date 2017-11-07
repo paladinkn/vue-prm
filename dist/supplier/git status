@@ -1,8 +1,0 @@
-git status
-git add .
-git commit -m 'fix'
-git pull origin v1.0
-git push origin v1.0
-git branch -a
-git fetch 
-git merge dev

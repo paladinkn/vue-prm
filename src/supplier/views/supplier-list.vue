@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p-table :info.sync="tData" v-on:jump="jumpPage" v-if="st"></p-table>
+		<p-table :info="tData" v-on:jump="jumpPage" v-if="st"></p-table>
 	</div>
 </template>
 <script>

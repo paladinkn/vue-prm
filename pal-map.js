@@ -1,6 +1,6 @@
 var path = require('path');
 var config = require('./config');
-var publicPath = path.join(config.rootPath, 'dist');
+var publicPath = path.join(config.rootPath, 'src');
 const commonChunks=['runtime','util','lib'];
 module.exports = {
 	//js注册
@@ -10,11 +10,16 @@ module.exports = {
 		pal: path.join(publicPath,'pal'),
 		supplier: path.join(publicPath,'supplier'),
 		util: path.join(publicPath,'util'),
+		test: path.join(publicPath,'test'),
 	},
 	//默认页面
 	default: 'login.html',
 	//html对应js
 	file: [
+		{
+			chunk: 'test',
+			chunks: ['runtime', 'util', 'lib', 'test'],
+		},
 		{
             chunk:'login',
             page: 'login.html',

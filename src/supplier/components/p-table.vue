@@ -1,7 +1,7 @@
 <template>
 <div>
-	<el-table border :data="tData.mData">
-		<el-table-column v-for="(it,index) in tData.hData" 
+	<el-table border :data="info.mData">
+		<el-table-column v-for="(it,index) in info.hData" 
 		  :key="index"
 		  :prop="it.prop"
 	      :label="it.label"
@@ -10,7 +10,7 @@
 	</el-table>
 	<el-pagination
 		layout="total,prev, pager, next"
-		:total="tData.total"
+		:total="info.total"
 		:page-size="10"
 		@current-change="handleCurrentChange"
 		class='page-pos'
@@ -30,11 +30,6 @@
 				this.$emit('jump',val);
 			}
 		},
-		computed: {
-			tData: function() {
-				return this.info;
-			}
-		}
 	}
 </script>
 <style type="text/css">

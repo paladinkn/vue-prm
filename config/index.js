@@ -9,6 +9,6 @@ module.exports = {
 	},
 	build: {
 		env: "pro",
-		buildPath: path.join(__dirname,'..', '_dist')
+		buildPath: path.join(__dirname,'..', 'dist')
 	}
 }

@@ -7,10 +7,16 @@ var mock = {
 		this.supplier(app);
 	},
 	supplier: function(app) {
+
+		//测试
 		app.post('/pal', function(req, resp) {
 			var obj = 'mock data';
 			resp.end(obj);
 		})
+
+
+
+		//供应商列表
 		app.post('/supplier/list', function(req, resp) {
 			var page = req.body.page;
 			var obj;
@@ -43,8 +49,6 @@ var mock = {
 					total: 50 
 				};
 			}
-
-			
 			obj = s(obj);
 			resp.end(obj);
 		})
