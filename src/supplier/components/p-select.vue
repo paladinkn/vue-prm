@@ -4,12 +4,12 @@
 			<span v-html="info.font"></span>:
 		</el-col>
 		<el-col :span="18">
-			<el-select v-model="info.value">
+			<el-select v-model="info.value" :multiple="info.mul">
 				<el-option 
 					v-for="(it, index) in info.list"
 					:key="it.index"
-					:label="it.label"
-					:value="it.value"
+					:label="it.name"
+					:value="it.id"
 					>
 				</el-option>
 			</el-select>
@@ -21,21 +21,8 @@
 		props: ['info'],
 		data: function() {
 			var obj = {};
-			console.log(this.info.list)
 			return obj;
 		},
-		watch: {
-			'info.list': {
-				handler: function(v, ob) {
-					console.log(111);
-					console.log(v);
-				},
-				deep: true
-			}
-		},
-		computed: {
-			
-		}
 	}
 </script>
 <style type="text/css">

@@ -39,14 +39,6 @@
     "element-ui": "^2.0.2",
     "vue": "^2.5.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/paladinkn/vue-pal.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/paladinkn/vue-pal/issues"
-  },
-  "homepage": "https://github.com/paladinkn/vue-pal#readme"
 }
