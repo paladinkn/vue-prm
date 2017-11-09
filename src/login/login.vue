@@ -10,7 +10,7 @@
 	</div>
 </template>
 <script>
-import util from '../util'
+import {pajax} from '../util'
 	export default {
 		data: function() {
 			return {
@@ -23,7 +23,7 @@ import util from '../util'
 				if(this.acc == 'pal' && this.pwd =='pal') {
 					window.location.href="./supplier.html";
 				}
-				util.pajax({
+				pajax({
 					url: 'http://172.16.13.26:8080/j_spring_security_check?j_username=zhangxubo',
 					/*url: '/pals',*/
 					/*data: {j_username:},*/

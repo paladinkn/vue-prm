@@ -52,6 +52,16 @@ var mock = {
 			obj = s(obj);
 			resp.end(obj);
 		})
+
+
+
+		//
+		app.post('/supplier/list', function(req, resp) {
+			var obj = {};
+			obj = {
+				
+			}
+		})
 	}
 }
 module.exports = mock;

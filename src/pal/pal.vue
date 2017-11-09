@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-import util from '../util';
+import {pajax} from '../util';
 	export default {
 		data: function() {
 			return {
@@ -14,7 +14,7 @@ import util from '../util';
 			}
 		},
 		mounted: function() {
-			util.pajax({
+			pajax({
 				url: '/pal',
 				data: {name: 'yangtian'},
 				success: function(data) {

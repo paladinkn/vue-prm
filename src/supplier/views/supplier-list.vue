@@ -5,7 +5,7 @@
 </template>
 <script>
 import {pTable} from '../components';
-import util from '../../util';
+import {pajax} from '../../util';
 import api from '../api';
 	export default {
 		data: function() {
@@ -21,7 +21,7 @@ import api from '../api';
 			queryNum: function(page) {
 				console.log(page)
 				var that = this;
-				util.pajax({
+				pajax({
 					url: api.supplierList,
 					data: {page:page},
 					success: function(data) {
