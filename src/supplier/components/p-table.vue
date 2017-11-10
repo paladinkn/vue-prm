@@ -32,7 +32,7 @@
 		},
 	}
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
 	.page-pos{
 		text-align: center;
 		margin-top: 30px;

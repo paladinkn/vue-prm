@@ -39,17 +39,19 @@
 </template>
 <script>
 	import {pInput, pSelect} from '../components';
-	import {pajax} from '../../util';
+	import {pajax, handle} from '../../util';
 	import api from '../api';
 	export default {
 		data: function() {
 			var obj = {};
 			obj.sname = {
-				font: '供应商名称'
+				font: '供应商名称',
+				rule: {required: true, max: 5, msg: '请输入供应商名称'},
 			}
 			obj.managerName = {
 				font: '联系人',
-				value: 11
+				value: '',
+				rule: {required: true, msg: '请输入联系人'},
 			}
 			obj.phone = {
 				font: '手机号',
@@ -80,7 +82,7 @@
 			return obj;
 		},
 		mounted: function() {
-			var that = this;
+			var that = this;			
 			pajax({
 				url: api.supplierPersonInit,
 				data: {id: 1},
@@ -99,13 +101,14 @@
 				this.auths.list = info.auths;
 			},
 			subInfo: function() {
-				this.manage.list = [];
 				var jsonData = {};
-				jsonData.name = this.name.value;
-				jsonData.phone = this.phone.value;
+				jsonData.sname = handle.handleToKey(this,this.sname);
+				jsonData.managerName = handle.handleToKey(this,this.managerName);
+				/*jsonData.phone = this.phone.value;
 				jsonData.idCard = this.idCard.value;
 				jsonData.manage = this.manage.value;
-				console.log(JSON.stringify(jsonData));
+				console.log(JSON.stringify(jsonData));*/
+				console.log(JSON.stringify(jsonData))
 			},
 		},
 		components: {
@@ -113,6 +116,14 @@
 			pSelect: pSelect
 		}
 
+	}
+	function handleToKey(o, v) {
+		if(v.value == '' || v.value == null) {
+			o.$set(v, 'mark', true);
+		}else{
+			o.$set(v, 'mark', false);
+		}
+		/*this.$set(this.sname, 'mark', true);*/
 	}
 </script>
 <style type="text/css">

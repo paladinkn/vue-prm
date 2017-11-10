@@ -1,4 +1,5 @@
 import {setCookie, getCookie} from './p-cookie';
 import {pajax} from './p-ajax';
-export {setCookie, getCookie, pajax};
+import handle from './p-handle';
+export {setCookie, getCookie, pajax, handle};
 
