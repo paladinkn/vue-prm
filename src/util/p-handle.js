@@ -6,6 +6,8 @@ var handle = {
 		var type = v.rule.type || 'default';
 		switch(type) {
 			case 'default':return that.defaultCheck(o,v);break;
+			case 'phone':return that.phoneCheck(o,v);break;
+			default: return that.defaultCheck(o,v);
 		}
 	},
 	defaultCheck: function(o, v) {
@@ -16,6 +18,20 @@ var handle = {
 			o.$set(v, 'mark', false);
 			return v.value;
 		}
+	},
+	phoneCheck: function(o, v) {
+		var mark = this.defaultCheck(o,v);
+		if(!mark) return mark;
+		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+		if(!myreg.test(v.value)) { 
+		    o.$set(v, 'mark', true);
+			o.$set(v.rule, 'msg', '请输入有效的手机号码！');
+		    return false; 
+		}else{
+			o.$set(v, 'mark', false);
+			return v.value; 
+		}
+		
 	}
 }
 export default handle;

@@ -8,6 +8,7 @@
 			<el-input 
 				v-model="info.value" 
 				:maxlength="max"
+				v-on:keyup.native='info.value=watchData($event)'
 				>
 			</el-input>
 
@@ -24,7 +25,18 @@
 			return obj;
 		},
 		methods: {
-
+			watchData: function(e) {
+				if(this.info.rule ) {
+					if(this.info.rule.input == 'num') {
+						return e.target.value.replace(/[^0-9-]*/g,"");
+					}
+					if(this.info.rule.input == 'identityCard') {
+						return e.target.value.replace(/[^0-9X]*/g,"");
+					}
+				}else {
+					return e.target.value;
+				}
+			}
 		},
 		computed: {
 			markFont: function() {
@@ -49,8 +61,16 @@
 				}
 			},
 			max: function() {
-				if(this.info.rule && this.info.rule.max) {
-					return this.info.rule.max;
+				if(this.info.rule) {
+					if(this.info.rule.type == 'phone') {
+						return 11;
+					}
+					if(this.info.rule.type == 'identityCard') {
+						return 18;
+					}
+					if(this.info.rule.max) {
+						return this.info.rule.max;
+					}
 				}else {
 					return 1000000;
 				}

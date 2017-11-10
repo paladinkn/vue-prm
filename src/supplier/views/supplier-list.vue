@@ -1,5 +1,6 @@
 <template>
 	<div>
+		
 		<p-table :info="tData" v-on:jump="jumpPage" v-if="st"></p-table>
 	</div>
 </template>
@@ -19,17 +20,11 @@ import api from '../api';
 		},
 		methods:{
 			queryNum: function(page) {
-				console.log(page)
 				var that = this;
-				pajax({
-					url: api.supplierList,
-					data: {page:page},
-					success: function(data) {
-						that.tData = data;
-					},
-					error: function() {
-
-					}
+				pajax.post(api.supplierList, {page:page}).then(function(data) {
+					that.tData = data;
+				}).catch(function(error) {
+					console.log(error);
 				})
 			},
 			jumpPage: function(num) {

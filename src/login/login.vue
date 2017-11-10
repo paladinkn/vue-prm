@@ -23,16 +23,10 @@ import {pajax} from '../util'
 				if(this.acc == 'pal' && this.pwd =='pal') {
 					window.location.href="./supplier.html";
 				}
-				pajax({
-					url: 'http://172.16.13.26:8080/j_spring_security_check?j_username=zhangxubo',
-					/*url: '/pals',*/
-					/*data: {j_username:},*/
-					success: function(data) {
-						console.log(data)
-					},
-					error: function() {
-						console.log('error')
-					}
+				pajax.get('http://172.16.13.26:8080/j_spring_security_check?j_username=zhangxubo').then(function(data) {
+					console.log(data);
+				}).catch(function(error) {
+
 				})
 			}
 		}

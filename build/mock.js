@@ -69,7 +69,19 @@ var mock = {
 			resp.end(obj);
 		})
 
-		
+
+		//新增个人供应商初始化
+		app.post('/supplier/person/pals', function(req, resp) {
+			var obj = {};
+			obj = {
+				name: 1,
+				age:2
+			}
+			obj = s(obj);
+			resp.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});
+			resp.end(obj);
+		})
+
 	}
 }
 //经营业态

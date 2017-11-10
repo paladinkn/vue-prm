@@ -15,7 +15,7 @@
 					<p-input :info="mobile"></p-input>
 				</el-col>
 				<el-col :span="8">
-					<p-input :info="idCard"></p-input>
+					<p-input :info="identityCard"></p-input>
 				</el-col>
 				<el-col :span="8">
 					<p-select :info="sCategory"></p-select>
@@ -56,14 +56,17 @@
 			obj.phone = {
 				font: '手机号',
 				value: '',
+				rule: {required: true, msg: '请输入手机号', type: 'phone', input: 'num'},
 			}
 			obj.mobile = {
 				font: '联系电话',
 				value: '',
+				rule: {input: 'num'},
 			}
-			obj.idCard = {
+			obj.identityCard = {
 				font: '身份证号码',
 				value: '',
+				rule: {input: 'identityCard'},
 			}
 			obj.sCategory = {
 				font: '经营业态',
@@ -83,15 +86,10 @@
 		},
 		mounted: function() {
 			var that = this;			
-			pajax({
-				url: api.supplierPersonInit,
-				data: {id: 1},
-				success: function(res) {
-					that.fixHandle(res);
-				},
-				error: function() {
-
-				}
+			pajax.post(api.supplierPersonInit, {id:1}).then(function(data) {
+				that.fixHandle(data);
+			}).catch(function(error) {
+				console.log(error);
 			})
 		},
 		methods: {
@@ -104,7 +102,10 @@
 				var jsonData = {};
 				jsonData.sname = handle.handleToKey(this,this.sname);
 				jsonData.managerName = handle.handleToKey(this,this.managerName);
-				/*jsonData.phone = this.phone.value;
+				jsonData.phone = handle.handleToKey(this,this.phone);
+				jsonData.mobile = handle.handleToKey(this,this.mobile);
+				jsonData.identityCard = handle.handleToKey(this,this.identityCard);
+				/*jsonData.identityCard = this.phone.value;
 				jsonData.idCard = this.idCard.value;
 				jsonData.manage = this.manage.value;
 				console.log(JSON.stringify(jsonData));*/
