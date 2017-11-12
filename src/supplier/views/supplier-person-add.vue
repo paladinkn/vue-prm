@@ -39,13 +39,17 @@
 </template>
 <script>
 	import {pInput, pSelect} from '../components';
-	import {pajax, handle} from '../../util';
+	import {pajax, handle, getCookie} from '../../util';
 	import api from '../api';
 	export default {
 		data: function() {
 			var obj = {};
 			obj.sname = {
+				//条目名称
 				font: '供应商名称',
+				//初始化值
+				value: '',
+				//输入规则，required:是否必填，默认false,max最大长度，msg错误时提示信息
 				rule: {required: true, max: 5, msg: '请输入供应商名称'},
 			}
 			obj.managerName = {
@@ -56,6 +60,7 @@
 			obj.phone = {
 				font: '手机号',
 				value: '',
+				//type  校验类型，p-handle中具体写规则
 				rule: {required: true, msg: '请输入手机号', type: 'phone', input: 'num'},
 			}
 			obj.mobile = {
@@ -70,22 +75,28 @@
 			}
 			obj.sCategory = {
 				font: '经营业态',
+				//下拉框列表，默认空
 				list: [],
-				mul: true
+				//是否多选
+				mul: true,
+				rule: {required: true, msg:'请选择经营业态'}
 			}
 			obj.malls = {
 				font: '选择商场',
 				list: [],
-				mul: true
+				mul: true,
+				rule: {required: true, msg:'请选择商场'}
 			}
 			obj.auths = {
 				font: '供应商权限',
 				list: [],
+				rule: {required: true, msg:'请选择供应商权限'}
 			}
 			return obj;
 		},
 		mounted: function() {
-			var that = this;			
+			var that = this;
+			/*console.log(getCookie('JSESSIONID'));*/
 			pajax.post(api.supplierPersonInit, {id:1}).then(function(data) {
 				that.fixHandle(data);
 			}).catch(function(error) {
@@ -105,6 +116,9 @@
 				jsonData.phone = handle.handleToKey(this,this.phone);
 				jsonData.mobile = handle.handleToKey(this,this.mobile);
 				jsonData.identityCard = handle.handleToKey(this,this.identityCard);
+				jsonData.sCategory = handle.handleToKey(this,this.sCategory);
+				jsonData.malls = handle.handleToKey(this,this.malls);
+				jsonData.auths = handle.handleToKey(this,this.auths);
 				/*jsonData.identityCard = this.phone.value;
 				jsonData.idCard = this.idCard.value;
 				jsonData.manage = this.manage.value;

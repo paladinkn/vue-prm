@@ -11,7 +11,6 @@
 				v-on:keyup.native='info.value=watchData($event)'
 				>
 			</el-input>
-
 			<p class="base-mark" v-if="mark" v-html="markFont"></p>
 		</el-col>
 	</el-row>
@@ -79,20 +78,5 @@
 	}
 </script>
 <style type="text/css" scoped>
-	.base-format{
-		height: 60px;
-		margin: 10px;
-		line-height: 60px;
-		position: relative;
-	}
-	.base-star{
-		color:#fa5555;
-		font-size: 14px; 
-	}
-	.base-mark {
-		position: absolute;
-		line-height: 14px;
-		color: #fa5555;
-		font-size: 14px;
-	}
+	
 </style>

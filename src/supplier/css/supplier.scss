@@ -1,1 +1,19 @@
 *{margin: 0;padding: 0;}
+.base-format{
+		height: 60px;
+		line-height: 60px;
+		margin: 10px;
+}
+.base-select {
+	width: 100%;
+}
+.base-star{
+	color:#fa5555;
+	font-size: 14px; 
+}
+.base-mark {
+	position: absolute;
+	line-height: 14px;
+	color: #fa5555;
+	font-size: 14px;
+}
