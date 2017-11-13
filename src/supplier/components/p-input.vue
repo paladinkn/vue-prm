@@ -25,13 +25,14 @@
 		},
 		methods: {
 			watchData: function(e) {
-				if(this.info.rule ) {
+				if(this.info.rule) {
 					if(this.info.rule.input == 'num') {
 						return e.target.value.replace(/[^0-9-]*/g,"");
 					}
 					if(this.info.rule.input == 'identityCard') {
 						return e.target.value.replace(/[^0-9X]*/g,"");
 					}
+					return e.target.value;
 				}else {
 					return e.target.value;
 				}
