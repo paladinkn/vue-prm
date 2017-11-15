@@ -36,10 +36,6 @@ var pajax = {
 	post: function(url, data) {
 		return new Promise(function(resolve, reject){
 			axios.post(url, data, {
-				headers: {
-					/*'JSESSIONID': getCookie('JSESSIONID')*/
-					/*'X-Requested-With':'XMLHttpRequest'*/
-				}
 			}).then(function(response) {
 				console.log(response);
 				resolve(response.data);

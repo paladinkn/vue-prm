@@ -26,6 +26,9 @@
 				<el-col :span="8">
 					<p-select :info="auths"></p-select>
 				</el-col>
+				<el-col :span="24">
+					<p-input :info="description"></p-input>
+				</el-col>
 				<el-col :span="24" class="person-add-sub">
 					<el-button @click="subInfo()">保存</el-button>
 					<el-button>提交审核</el-button>
@@ -61,7 +64,7 @@
 				font: '手机号',
 				value: '',
 				//type  校验类型，p-handle中具体写规则
-				rule: {required: true, msg: '请输入手机号', type: 'phone', input: 'num'},
+				rule: {required: true, msg: '请输入有效的手机号码！', type: 'phone', input: 'num'},
 			}
 			obj.mobile = {
 				font: '联系电话',
@@ -92,13 +95,24 @@
 				list: [],
 				rule: {required: true, msg:'请选择供应商权限'}
 			}
+			obj.description = {
+				font: '业务员评述',
+				type: 'textarea',
+				head: 3,
+				cont: 21,
+				value: ''
+			}
 			return obj;
 		},
 		mounted: function() {
 			var that = this;
 			/*console.log(getCookie('JSESSIONID'));*/
-			pajax.post(api.supplierPersonInit, {id:1}).then(function(data) {
-				that.fixHandle(data);
+			pajax.get(api.supplierPersonInit, {id: null}).then(function(data) {
+				if(data.code == 200) {
+					that.fixHandle(data.businessObj);
+				}else{
+					console.log(data.message);
+				}
 			}).catch(function(error) {
 				console.log(error);
 			})
@@ -119,11 +133,24 @@
 				jsonData.sCategory = handle.handleToKey(this,this.sCategory);
 				jsonData.malls = handle.handleToKey(this,this.malls);
 				jsonData.auths = handle.handleToKey(this,this.auths);
-				/*jsonData.identityCard = this.phone.value;
-				jsonData.idCard = this.idCard.value;
-				jsonData.manage = this.manage.value;
-				console.log(JSON.stringify(jsonData));*/
+				jsonData.description = handle.handleToKey(this,this.description);
 				console.log(JSON.stringify(jsonData))
+				for(var it in jsonData) {
+					if(jsonData[it] == false) {
+						return ;
+					}
+				}
+				pajax.post(api.supplierPersonInit, jsonData).then(function(data) {
+					console.log(data);
+					if(data.code == 200) {
+						
+					}else{
+						console.log(data.message);
+					}
+				}).catch(function(error) {
+					console.log(error);
+				})
+				console.log('success');
 			},
 		},
 		components: {

@@ -1,8 +1,8 @@
 var server;
 //本地环境
-server = 'local';
+//server = 'local';
 //小敏环境
-//server = 'mandy';
+server = 'mandy';
 //测试环境
 //server = 'dev';
 var api = {

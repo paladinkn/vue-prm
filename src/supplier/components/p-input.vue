@@ -1,14 +1,16 @@
 <template>
 	<el-row class="base-format">
-		<el-col :span="8">
+		<el-col :span="head">
 			<span class="base-star" v-if="required">*</span>
 			<span v-html="info.font"></span>:
 		</el-col>
-		<el-col :span="16">
+		<el-col :span="cont">
 			<el-input 
 				v-model="info.value" 
 				:maxlength="max"
 				v-on:keyup.native='info.value=watchData($event)'
+				:type="curType"
+				v-on:blur='blurEvent()'
 				>
 			</el-input>
 			<p class="base-mark" v-if="mark" v-html="markFont"></p>
@@ -20,6 +22,9 @@
 		props: ['info'],
 		data: function() {
 			var obj = {};
+			obj.head = this.info.head || 8;
+			obj.cont = this.info.cont || 16;
+			obj.curType = this.info.type || '';
 			return obj;
 		},
 		methods: {
@@ -36,7 +41,33 @@
 				}else {
 					return e.target.value;
 				}
-			}
+			},
+			//鼠标离开校验
+			blurEvent: function() {
+				var rule = this.info.rule;
+				var val = this.info.value;
+				if(!rule) return;
+				if(rule.required) {
+					if(val == ''){
+						console.log(111);
+						this.$set(this.info, 'mark', true);
+						return;
+					}else{
+						this.$set(this.info, 'mark', false);
+					}	
+				}
+				console.log(rule.type);
+				if(rule.type == 'phone') {
+					var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+					console.log(2223);
+					if(!myreg.test(val)) { 
+					    this.$set(this.info, 'mark', true);
+					}else {
+						this.$set(this.info, 'mark', false);
+					}
+					return ;
+				}
+			},
 		},
 		computed: {
 			//错误提示
@@ -49,11 +80,7 @@
 			},
 			//错误标识
 			mark: function() {
-				if(this.info.mark) {
-					return true;
-				}else{
-					return false;
-				}
+				return this.info.mark || false;
 			},
 			//是否必填
 			required: function() {
