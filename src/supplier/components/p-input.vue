@@ -20,10 +20,10 @@
 		props: ['info'],
 		data: function() {
 			var obj = {};
-			obj.status = this.status;
 			return obj;
 		},
 		methods: {
+			//输入框输入监控
 			watchData: function(e) {
 				if(this.info.rule) {
 					if(this.info.rule.input == 'num') {
@@ -39,6 +39,7 @@
 			}
 		},
 		computed: {
+			//错误提示
 			markFont: function() {
 				if(this.info.rule && this.info.rule.msg) {
 					return this.info.rule.msg;
@@ -46,6 +47,7 @@
 					return '';
 				}
 			},
+			//错误标识
 			mark: function() {
 				if(this.info.mark) {
 					return true;
@@ -53,6 +55,7 @@
 					return false;
 				}
 			},
+			//是否必填
 			required: function() {
 				if(this.info.rule&&this.info.rule.required) {
 					return true;
@@ -60,6 +63,7 @@
 					return false;
 				}
 			},
+			//输入的最大长度
 			max: function() {
 				if(this.info.rule) {
 					if(this.info.rule.type == 'phone') {

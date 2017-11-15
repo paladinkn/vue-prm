@@ -7,7 +7,7 @@
 <script>
 import {pTable} from '../components';
 import {pajax} from '../../util';
-import api from '../api';
+import api from '../../api';
 	export default {
 		data: function() {
 			var obj = {};
@@ -22,6 +22,7 @@ import api from '../api';
 			queryNum: function(page) {
 				var that = this;
 				pajax.post(api.supplierList, {page:page}).then(function(data) {
+					console.log(data)
 					that.tData = data;
 				}).catch(function(error) {
 					console.log(error);

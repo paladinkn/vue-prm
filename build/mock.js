@@ -4,18 +4,37 @@ function s(o){
 }
 var mock = {
 	use: function(app) {
+		this.login(app);
 		this.supplier(app);
 	},
+	login: function(app) {
+		app.get('/login', function(req, resp) {
+			req = req.query;
+			var obj = {};
+			if(req.username == '1' && req.password == '1') {
+				obj = {
+					businessObj: '111111',
+					status: true,
+					code: 200
+				}
+			}else {
+				obj = {
+					businessObj: '',
+					status: false,
+					code: 500
+				}
+			}
+			
+			obj = s(obj);
+			resp.end(obj)
+		})
+	},
 	supplier: function(app) {
-
 		//测试
 		app.post('/pal', function(req, resp) {
 			var obj = 'mock data';
 			resp.end(obj);
 		})
-
-
-
 		//供应商列表
 		app.post('/supplier/list', function(req, resp) {
 			var page = req.body.page;

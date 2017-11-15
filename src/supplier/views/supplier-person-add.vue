@@ -40,7 +40,7 @@
 <script>
 	import {pInput, pSelect} from '../components';
 	import {pajax, handle, getCookie} from '../../util';
-	import api from '../api';
+	import api from '../../api';
 	export default {
 		data: function() {
 			var obj = {};
