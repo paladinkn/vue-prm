@@ -18,8 +18,10 @@
 	</el-row>
 </template>
 <script>
+import {required, mark} from './mixin'
 	export default {
 		props: ['info'],
+		mixins: [required, mark],
 		data: function() {
 			var obj = {};
 			obj.head = this.info.head || 8;
@@ -49,14 +51,12 @@
 				if(!rule) return;
 				if(rule.required) {
 					if(val == ''){
-						console.log(111);
 						this.$set(this.info, 'mark', true);
 						return;
 					}else{
 						this.$set(this.info, 'mark', false);
 					}	
 				}
-				console.log(rule.type);
 				if(rule.type == 'phone') {
 					var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
 					console.log(2223);
@@ -70,26 +70,6 @@
 			},
 		},
 		computed: {
-			//错误提示
-			markFont: function() {
-				if(this.info.rule && this.info.rule.msg) {
-					return this.info.rule.msg;
-				}else{
-					return '';
-				}
-			},
-			//错误标识
-			mark: function() {
-				return this.info.mark || false;
-			},
-			//是否必填
-			required: function() {
-				if(this.info.rule&&this.info.rule.required) {
-					return true;
-				}else {
-					return false;
-				}
-			},
 			//输入的最大长度
 			max: function() {
 				if(this.info.rule) {

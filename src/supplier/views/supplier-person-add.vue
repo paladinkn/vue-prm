@@ -107,7 +107,7 @@
 		mounted: function() {
 			var that = this;
 			/*console.log(getCookie('JSESSIONID'));*/
-			pajax.get(api.supplierPersonInit, {id: null}).then(function(data) {
+			pajax.get(api.supplierPersonAdd, {id: null}).then(function(data) {
 				if(data.code == 200) {
 					that.fixHandle(data.businessObj);
 				}else{
@@ -125,22 +125,25 @@
 			},
 			subInfo: function() {
 				var jsonData = {};
+				jsonData.sType = 1;
 				jsonData.sname = handle.handleToKey(this,this.sname);
 				jsonData.managerName = handle.handleToKey(this,this.managerName);
 				jsonData.phone = handle.handleToKey(this,this.phone);
 				jsonData.mobile = handle.handleToKey(this,this.mobile);
 				jsonData.identityCard = handle.handleToKey(this,this.identityCard);
 				jsonData.sCategory = handle.handleToKey(this,this.sCategory);
-				jsonData.malls = handle.handleToKey(this,this.malls);
-				jsonData.auths = handle.handleToKey(this,this.auths);
+				jsonData.mid = handle.handleToKey(this,this.malls);
+				jsonData.authType = handle.handleToKey(this,this.auths);
 				jsonData.description = handle.handleToKey(this,this.description);
 				console.log(JSON.stringify(jsonData))
 				for(var it in jsonData) {
-					if(jsonData[it] == false) {
+					if(jsonData[it] === false) {
+						console.log('false')
 						return ;
 					}
 				}
-				pajax.post(api.supplierPersonInit, jsonData).then(function(data) {
+				console.log('success');
+				pajax.post(api.supplierPersonAdd, jsonData).then(function(data) {
 					console.log(data);
 					if(data.code == 200) {
 						
@@ -150,7 +153,7 @@
 				}).catch(function(error) {
 					console.log(error);
 				})
-				console.log('success');
+				
 			},
 		},
 		components: {

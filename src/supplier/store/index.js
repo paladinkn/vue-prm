@@ -1,10 +1,10 @@
+import Vue from 'vue';
+import Vuex from 'vuex';
+import busadd from './modules/busadd';
+Vue.use(Vuex);
 
-var store = {
-	state: {
-		token: '',
-		name: 11,
-		phone: 131,
+export default new Vuex.Store({
+	modules: {
+		busadd,
 	}
-}
-
-
+})

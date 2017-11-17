@@ -5,7 +5,8 @@
 			<span v-html="info.font"></span>:
 		</el-col>
 		<el-col :span="16">
-			<el-select v-model="info.value" :multiple="info.mul" class="base-select">
+			<el-select v-model="info.value" :multiple="info.mul" class="base-select" 
+			@change="selectEvent()">
 				<el-option 
 					v-for="(it, index) in info.list"
 					:key="it.index"
@@ -24,6 +25,21 @@
 		data: function() {
 			var obj = {};
 			return obj;
+		},
+		methods: {
+			selectEvent: function() {
+				var rule = this.info.rule;
+				var val = this.info.value;
+				if(!rule) return;
+				if(rule.required) {
+					if(val == ''){
+						this.$set(this.info, 'mark', true);
+						return;
+					}else{
+						this.$set(this.info, 'mark', false);
+					}	
+				}
+			}
 		},
 		computed: {
 			markFont: function() {
@@ -51,5 +67,5 @@
 	}
 </script>
 <style type="text/css" scoped>
-	
+
 </style>
